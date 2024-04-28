@@ -1,4 +1,4 @@
-from abc import ABC, abstractmethod
+from abc import ABC, abstractmethod, abstractstaticmethod
 
 
 class ChatAssistant(ABC):
@@ -9,11 +9,6 @@ class ChatAssistant(ABC):
         Args:
             raw_prompt: raw text template containing fields to replace.
         """
-        pass
-
-    @abstractmethod
-    def prepare_prompt(self, *args, **kwargs):
-        """Final prompt to be sent to the completion API."""
         pass
 
     @abstractmethod
