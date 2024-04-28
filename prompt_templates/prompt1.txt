@@ -1,8 +1,8 @@
 Your goal is to categorize given query text delimited within triple backticks strictly
-into one {multilabel}of the categories given below. If no category fits say Unknown.
+into one {multilabel}of the categories given below.
 Categories are listed as one category per line and each line has id, name, description.
-Before making a decision, understand each category using it's name and description.
-Respond with list of category ids{show_reasoning}. Format your response as a JSON object.
+Before making a decision, understand each category using its name and description.
+Respond with list of category ids{show_reasoning}. Format your response as a JSON object and if no categories match place empty list.
 
 Categories are:
 {categories}
