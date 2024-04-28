@@ -49,15 +49,18 @@ class Prediction:
 
     def format_result(self, message):
         try:
-            message = json.loads(message)
+            f_message = json.loads(message)
         except json.decoder.JSONDecodeError as e:
             logger.error(e)
             logger.info(message)
-            message = json.dumps({'result': [], 'reasoning': 'Error encountered while classifying.'})
+            f_message = json.dumps({'result': [], 'reasoning': 'Error encountered while classifying.'})
         else:
+            if len(f_message) == 0:
+                return {'result': []}
+
             for name in ['ids', 'categories', 'classes']:
-                if name in message:
-                    message['result'] = message.get(name, [])
-                    del message[name]
+                if name in f_message:
+                    f_message['result'] = f_message.get(name, [])
                     break
-        return message
+
+        return f_message
