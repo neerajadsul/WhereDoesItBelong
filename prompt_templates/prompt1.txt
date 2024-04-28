@@ -1,10 +1,9 @@
-Your goal is to categorize given query text delimited within triple backticks strictly 
-into one {multilabel}of the categories given below. If no category fits say Unknown. 
-Categories are listed as one category per line and each line has id, name, description. 
+Your goal is to categorize given query text delimited within triple backticks strictly
+into one {multilabel}of the categories given below. If no category fits say Unknown.
+Categories are listed as one category per line and each line has id, name, description.
 Before making a decision, understand each category using it's name and description.
-{show_reasoning}
-Format your response as a JSON object.
-    
+Respond with list of category ids{show_reasoning}. Format your response as a JSON object.
+
 Categories are:
 {categories}
 
