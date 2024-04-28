@@ -31,7 +31,30 @@ class ClassifyPromptCrafter(PromptCrafter):
         fields = regex_fields.findall(self._raw_prompt)
         fields = [f[1:-1] for f in fields]  # Remove curley braces
         self.field_map = {k: None for k in fields}
-        
+
+    @abstractmethod
+    def craft_prompt(self, data):
+        pass
+
+
+class QuestionAnswerPromptCrafter(PromptCrafter):
+    def __init__(self, prompt_template_file):
+        super().__init__(prompt_template_file)
+    def craft_prompt(self, data):
+        data = json.loads(data)
+        justify = " and a justfy in a single sentence with minimum words possible but no more than 15."
+        prompt = self._raw_prompt.format(
+            justify=justify if data['justify'] else '',
+            thing1=data['thing1'],
+            thing2=data['thing2']
+        )
+        return prompt
+
+
+
+
+class ClassifyPromptCrafter(PromptCrafter):
+    """Create prompt for classifying given query text into one of the provided classes."""
     def craft_prompt(self, data):
         data = json.loads(data)
         query_text = data['query']
