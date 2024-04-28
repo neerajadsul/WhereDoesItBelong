@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+import json
 
 from openai import OpenAI
 
@@ -29,11 +30,12 @@ class OpenAIAssistant(ChatAssistant):
         return response
 
     def get_message(self, response):
-        return response.choices[0].message["content"]
+        return response.choices[0].message.content
 
     def log_response(self, response):
         """Records full response to setup datastore."""
-        self.datastore.save()
+        data = json.dumps(json.loads(response.model_dump_json()), indent=4)
+        self.datastore.save(data)
 
 
 if __name__ == "__main__":
