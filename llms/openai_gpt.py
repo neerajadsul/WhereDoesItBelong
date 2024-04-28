@@ -3,9 +3,9 @@ from pathlib import Path
 
 from openai import OpenAI
 
-from llms import ChatAssistant
-from prompts import ClassifyPromptCrafter
-from datastores import LogFiles
+from .llms import ChatAssistant
+from .prompts import ClassifyPromptCrafter
+from .datastores import LogFiles
 
 
 class OpenAIAssistant(ChatAssistant):
@@ -13,7 +13,7 @@ class OpenAIAssistant(ChatAssistant):
         self.model = model
         self.datastore = datastore
         self.prompt_crafter = prompt_crafter
-        
+
         if os.getenv('OPENAI_SECRET_KEY') is None:
             raise EnvironmentError('API Key not set.')
         self.client = OpenAI(api_key=os.getenv('OPENAI_SECRET_KEY'))
@@ -24,7 +24,7 @@ class OpenAIAssistant(ChatAssistant):
         response = self.client.chat.completions.create(
             model=self.model,
             messages=messages,
-            temperature=0, 
+            temperature=0,
         )
         return response
 
@@ -39,10 +39,11 @@ class OpenAIAssistant(ChatAssistant):
 if __name__ == "__main__":
     RESPONSE_PATH = Path(os.getenv('HOME')) / 'GptResponses'
     datastore = LogFiles(log_path=RESPONSE_PATH)
-    FPATH = Path(__file__).resolve().parent
+    FPATH = Path(__file__).resolve().parent.parent
     crafter = ClassifyPromptCrafter(FPATH / 'prompt_templates/prompt1.txt')
     assistant = OpenAIAssistant(
         model='gpt-3.5-turbo',
         prompt_crafter=crafter,
         datastore=datastore
     )
+
