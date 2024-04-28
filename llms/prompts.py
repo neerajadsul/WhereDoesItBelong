@@ -7,23 +7,11 @@ from pathlib import Path
 
 class PromptCrafter(ABC):
     """Crafts final prompt replacing template fields with data or conditional prompt changes."""
-    
-    @abstractmethod
-    def __init__(self, prompts_template_file):
-        pass
-
-    @abstractmethod
-    def craft_prompt(self, data):
-        pass
-
-
-class ClassifyPromptCrafter(PromptCrafter):
-    """Create prompt for classifying given query text into one of the provided classes."""
 
     def __init__(self, prompt_template_file):
         if not os.path.exists(prompt_template_file):
             raise FileNotFoundError(f'Prompt template not found: {prompt_template_file}')
-            
+
         with open(prompt_template_file, 'rt') as fp:
             self._raw_prompt = fp.read()
         # Regex to find all template fields enclosed in curly braces
@@ -63,7 +51,7 @@ class ClassifyPromptCrafter(PromptCrafter):
         categories = '\n'.join(categories)
 
         multilabel = 'or more ' if data['options']['multilabel'] else ''
-        if data['options']['show_reasoning']:
+        if data['options'].get('show_reasoning', False):
             show_reasoning = 'Provide reason for the decision in a maximum 15 word long sentence.'
         else:
             show_reasoning = ''
@@ -74,7 +62,7 @@ class ClassifyPromptCrafter(PromptCrafter):
             multilabel = multilabel,
             show_reasoning = show_reasoning
         )
-        
+
         return prompt
 
 
