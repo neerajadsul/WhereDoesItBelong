@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 import json
+import time
 
 from openai import OpenAI
 
@@ -26,6 +27,7 @@ class OpenAIAssistant(ChatAssistant):
             model=self.model,
             messages=messages,
             temperature=0,
+            response_format={"type": "json_object"}
         )
         return response
 
