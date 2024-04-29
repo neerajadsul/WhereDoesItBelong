@@ -3,6 +3,7 @@ import re
 import os
 import json
 from pathlib import Path
+from jinja2 import Template
 
 
 class PromptCrafter(ABC):
@@ -14,11 +15,8 @@ class PromptCrafter(ABC):
 
         with open(prompt_template_file, 'rt') as fp:
             self._raw_prompt = fp.read()
-        # Regex to find all template fields enclosed in curly braces
-        regex_fields = re.compile(r'\{{1}\S+\}{1}')
-        fields = regex_fields.findall(self._raw_prompt)
-        fields = [f[1:-1] for f in fields]  # Remove curley braces
-        self.field_map = {k: None for k in fields}
+        
+        self.template = Template(self._raw_prompt)
 
     @abstractmethod
     def craft_prompt(self, data):
@@ -56,19 +54,19 @@ class ClassifyPromptCrafter(PromptCrafter):
         else:
             show_reasoning = ''
 
-        prompt = self._raw_prompt.format(
+        prompt2 = self.template.render(
             query_text=query_text,
             categories = categories,
             multilabel = multilabel,
             show_reasoning = show_reasoning
         )
 
-        return prompt
+        return prompt2
 
 
 if __name__ == "__main__":
-    path = Path(__file__).resolve().parent
-    crafer = ClassifyPromptCrafter(path / 'prompt_templates/prompt1.txt')
+    path = Path(__file__).resolve().parent.parent
+    crafer = ClassifyPromptCrafter(path / 'prompt_templates/prompt3.txt')
     data = """{
     "query": "the text to be classified",
     "options": {
