@@ -1,0 +1,15 @@
+digraph "classes" {
+rankdir=BT
+charset="utf-8"
+"llms.llms.ChatAssistant" [color="black", fontcolor="black", label=<{ChatAssistant|<br ALIGN="LEFT"/>|<I>get_completion</I>(raw_prompt)<br ALIGN="LEFT"/><I>get_message</I>(response)<br ALIGN="LEFT"/><I>log_response</I>(response)<br ALIGN="LEFT"/>}>, shape="record", style="solid"];
+"llms.prompts.ClassifyPromptCrafter" [color="black", fontcolor="black", label=<{ClassifyPromptCrafter|<br ALIGN="LEFT"/>|craft_prompt(data)<br ALIGN="LEFT"/>}>, shape="record", style="solid"];
+"llms.datastores.Datastore" [color="black", fontcolor="black", label=<{Datastore|<br ALIGN="LEFT"/>|<I>save</I>(response, filename)<br ALIGN="LEFT"/>}>, shape="record", style="solid"];
+"llms.datastores.LogFiles" [color="black", fontcolor="black", label=<{LogFiles|log_path<br ALIGN="LEFT"/>|save(response, filename)<br ALIGN="LEFT"/>}>, shape="record", style="solid"];
+"llms.openai_gpt.OpenAIAssistant" [color="black", fontcolor="black", label=<{OpenAIAssistant|client<br ALIGN="LEFT"/>datastore<br ALIGN="LEFT"/>model<br ALIGN="LEFT"/>prompt_crafter<br ALIGN="LEFT"/>response_format : dict<br ALIGN="LEFT"/>|get_completion(data)<br ALIGN="LEFT"/>get_message(response)<br ALIGN="LEFT"/>log_response(response)<br ALIGN="LEFT"/>}>, shape="record", style="solid"];
+"llms.prompts.PromptCrafter" [color="black", fontcolor="black", label=<{PromptCrafter|template<br ALIGN="LEFT"/>|<I>craft_prompt</I>(data)<br ALIGN="LEFT"/>}>, shape="record", style="solid"];
+"llms.prompts.QuestionAnswerPromptCrafter" [color="black", fontcolor="black", label=<{QuestionAnswerPromptCrafter|<br ALIGN="LEFT"/>|craft_prompt(sdata)<br ALIGN="LEFT"/>}>, shape="record", style="solid"];
+"llms.datastores.LogFiles" -> "llms.datastores.Datastore" [arrowhead="empty", arrowtail="none"];
+"llms.openai_gpt.OpenAIAssistant" -> "llms.llms.ChatAssistant" [arrowhead="empty", arrowtail="none"];
+"llms.prompts.ClassifyPromptCrafter" -> "llms.prompts.PromptCrafter" [arrowhead="empty", arrowtail="none"];
+"llms.prompts.QuestionAnswerPromptCrafter" -> "llms.prompts.PromptCrafter" [arrowhead="empty", arrowtail="none"];
+}

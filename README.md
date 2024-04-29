@@ -1,5 +1,12 @@
 # 5D Take Home Technical Test
 
+# High-Level Design Overview
+### Packages
+![](./_docs/figures/module_packages.svg)
+
+### Classes
+![](./_docs/figures/module_classes.svg)
+
 # Maintainability Index (radon) 
 - Rank: A
 - Maintainability: Very-high 

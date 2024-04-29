@@ -1,0 +1,12 @@
+digraph "packages" {
+rankdir=BT
+charset="utf-8"
+"llms" [color="black", label=<llms>, shape="box", style="solid"];
+"llms.datastores" [color="black", label=<llms.datastores>, shape="box", style="solid"];
+"llms.llms" [color="black", label=<llms.llms>, shape="box", style="solid"];
+"llms.openai_gpt" [color="black", label=<llms.openai_gpt>, shape="box", style="solid"];
+"llms.prompts" [color="black", label=<llms.prompts>, shape="box", style="solid"];
+"llms.openai_gpt" -> "llms" [arrowhead="open", arrowtail="none"];
+"llms.openai_gpt" -> "llms.datastores" [arrowhead="open", arrowtail="none"];
+"llms.openai_gpt" -> "llms.prompts" [arrowhead="open", arrowtail="none"];
+}
