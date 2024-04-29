@@ -29,11 +29,12 @@ def mock_completion_random(prompt, categories, query_text, options):
 class Prediction:
     def __init__(self):
         self.datastore = LogFiles(log_path=RESPONSE_DATA_PATH)
-        self.crafter = ClassifyPromptCrafter(PROMPT_TEMPLATES_PATH / 'prompt2.txt')
+        self.crafter = ClassifyPromptCrafter(PROMPT_TEMPLATES_PATH / 'prompt3.txt')
         self.assistant = OpenAIAssistant(
             model='gpt-3.5-turbo',
             prompt_crafter=self.crafter,
-            datastore=self.datastore
+            datastore=self.datastore,
+            response_format='json'
         )
 
     def predict(self, data):
