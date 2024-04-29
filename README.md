@@ -48,6 +48,67 @@ Feel free to include anything else in the deliverable that could help us approac
 
 Please submit your code as a zip file or a link to a private repository. If you choose to submit a zip file, please ensure that it is named `5D_Take_Home_Technical_Test.zip`.
 
+## Top-1 Run
+Using `prompt3.txt`, JSON examples with Jinja2 templating.
+```shell
+python evaluate.py                                                                                                                                                                                                                              ⏎ ✹ ✭
+[CORRECT] Expected ['V1', 'C1'], got ['V1', 'C1']
+[CORRECT] Expected ['CO1'], got ['CO1']
+[CORRECT] Expected ['RR1', 'CC1'], got ['RR1', 'CC1']
+[CORRECT] Expected ['B1', 'M1'], got ['B1', 'M1']
+[CORRECT] Expected ['MG1', 'G1'], got ['MG1', 'G1']
+[CORRECT] Expected ['P1', 'C2'], got ['P1', 'C2']
+[CORRECT] Expected ['H1', 'O1'], got ['H1', 'O1']
+[CORRECT] Expected ['F1', 'S2'], got ['F1', 'S2']
+[CORRECT] Expected ['A1', 'CH1'], got ['A1', 'CH1']
+[CORRECT] Expected ['T1', 'PB1'], got ['T1', 'PB1']
+[CORRECT] Expected ['SC1', 'L1'], got ['SC1', 'L1']
+[CORRECT] Expected ['C3', 'BL1'], got ['C3', 'BL1']
+[CORRECT] Expected [], got []
+[CORRECT] Expected [], got []
+[CORRECT] Expected [], got []
+[CORRECT] Expected [], got []
+[INCORRECT] Expected [], got ['C1']
+[CORRECT] Expected [], got []
+[CORRECT] Expected [], got []
+[CORRECT] Expected [], got []
+[CORRECT] Expected [], got []
+[INCORRECT] Expected [], got ['C2']
+data/case_1.json accuracy: 90.91%
+[INCORRECT] Expected ['I1', 'R1'], got ['Q1']
+[CORRECT] Expected ['Q1'], got ['Q1']
+[CORRECT] Expected ['C1'], got ['C1']
+[CORRECT] Expected ['A1'], got ['A1']
+[CORRECT] Expected ['D1'], got ['D1']
+[CORRECT] Expected ['T1'], got ['T1']
+[CORRECT] Expected ['Ap1'], got ['Ap1']
+[CORRECT] Expected ['S1'], got ['S1']
+[INCORRECT] Expected ['F1'], got ['I1']
+[INCORRECT] Expected ['Q1', 'S1'], got ['Q1']
+[CORRECT] Expected ['Ap1', 'T1'], got ['Ap1', 'T1']
+[CORRECT] Expected ['D1', 'C1'], got ['D1', 'C1']
+[INCORRECT] Expected ['I1', 'S1', 'F1'], got ['S1']
+[CORRECT] Expected ['R1', 'Q1'], got ['R1', 'Q1']
+[INCORRECT] Expected ['I1', 'Ap1'], got ['Ap1']
+[INCORRECT] Expected ['T1', 'Ap1', 'F1'], got ['T1', 'Ap1']
+data/case_2.json accuracy: 62.50%
+[CORRECT] Expected ['Y1'], got ['Y1']
+[CORRECT] Expected ['N1'], got ['N1']
+[CORRECT] Expected ['Y1'], got ['Y1']
+[CORRECT] Expected ['N1'], got ['N1']
+[CORRECT] Expected ['Y1'], got ['Y1']
+[CORRECT] Expected ['N1'], got ['N1']
+[CORRECT] Expected ['Y1'], got ['Y1']
+[CORRECT] Expected ['N1'], got ['N1']
+[CORRECT] Expected ['Y1'], got ['Y1']
+[CORRECT] Expected ['N1'], got ['N1']
+[CORRECT] Expected ['Y1'], got ['Y1']
+[CORRECT] Expected ['N1'], got ['N1']
+data/case_3.json accuracy: 100.00%
+Average accuracy: 84.47%
+```
+
+
 ## What We Like To See
 
 - Clean, well-structured code
