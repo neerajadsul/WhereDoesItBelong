@@ -1,4 +1,5 @@
 import logging
+import os
 
 from flask import Flask, request
 from prediction import Prediction
@@ -9,14 +10,16 @@ prediction = Prediction()
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.ERROR)
-logging.basicConfig(filename='app.log', level=logging.DEBUG)
+logfilepath = os.path.join(os.getenv('HOME'), '.gptlog', 'app.log')
+logging.basicConfig(filename=logfilepath, level=logging.DEBUG)
 
 
 @app.route('/classify', methods=['POST'])
 def classify():
     data = request.data.decode()
     result = prediction.predict(data)
-    return prediction.format_result(result)
+    result = prediction.format_result_from_plain(result)
+    return result
 
 if __name__ == "__main__":
-    app.run(port=8000, debug=False)
+    app.run(port=8000, debug=True)
