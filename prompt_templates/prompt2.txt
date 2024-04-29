@@ -1,0 +1,12 @@
+Your goal is to categorize given query text delimited within triple backticks strictly
+into one {multilabel}of the categories given below.
+Categories are listed as one category per line and each line has id, name, description.
+Before making a decision, understand each category using its name and description.
+Respond with a list of comma separated category ids delimited within square brackets [], for example [V1, Ap2].
+If no category can be inferred then provide empty square brackets [], for example [].
+{show_reasoning}
+
+Categories are:
+{categories}
+
+Query Text is: ```{query_text}```

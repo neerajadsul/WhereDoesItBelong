@@ -3,6 +3,7 @@ import logging
 import random
 import os
 from pathlib import Path
+import re
 
 import openai
 
@@ -11,7 +12,7 @@ from llms.prompts import ClassifyPromptCrafter
 from llms.datastores import LogFiles
 
 
-RESPONSE_DATA_PATH = Path(os.getenv('HOME')) / 'GptResponses'
+RESPONSE_DATA_PATH = Path(os.getenv('HOME')) / '.gptlog' / 'responses'
 PROMPT_TEMPLATES_PATH = Path(__file__).resolve().parent / 'prompt_templates'
 
 logger = logging.getLogger()
@@ -28,7 +29,7 @@ def mock_completion_random(prompt, categories, query_text, options):
 class Prediction:
     def __init__(self):
         self.datastore = LogFiles(log_path=RESPONSE_DATA_PATH)
-        self.crafter = ClassifyPromptCrafter(PROMPT_TEMPLATES_PATH / 'prompt1.txt')
+        self.crafter = ClassifyPromptCrafter(PROMPT_TEMPLATES_PATH / 'prompt2.txt')
         self.assistant = OpenAIAssistant(
             model='gpt-3.5-turbo',
             prompt_crafter=self.crafter,
@@ -47,7 +48,16 @@ class Prediction:
 
         return message
 
-    def format_result(self, message):
+    def format_result_from_plain(self, message):
+        result_regex = re.compile(r'\[{1}.+\]{1}')
+        result = result_regex.findall(message)
+        result = [s.strip() for s in result[0][1:-1].split(',')]
+        reasoning_regex = re.compile(r'```{1}.+```{1}')
+        reasoning = reasoning_regex.findall(message)
+        result = { 'result': result, 'reasoning': reasoning}
+        return result
+        
+    def format_result_from_json(self, message):
         try:
             f_message = json.loads(message)
         except json.decoder.JSONDecodeError as e:
