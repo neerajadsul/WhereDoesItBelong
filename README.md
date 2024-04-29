@@ -1,5 +1,24 @@
 # 5D Take Home Technical Test
 
+## How to run with docker?
+1. Clone the repository and go to the root of it.
+2. Set environment variable `OPENAI_SECRET_KEY` in your OS (Linux or macOS).
+3. Using the dockerfile build the image with tag `flask3.12`:
+    ```shell
+    docker build -t flask3.12 .
+    ```
+4. Now run the container while with:
+    ```shell
+    docker run -it -p 8000:8000 -e OPENAI_SECRET_KEY=$OPENAI_SECRET_KEY flask3.12
+    ```
+5. You should see:
+    ```
+    * Serving Flask app 'app'
+    * Debug mode: off
+    ```
+6. Run `python evaluate.py` in another terminal.
+
+
 # High-Level Design Overview
 ### Packages
 ![](./_docs/figures/module_packages.svg)
