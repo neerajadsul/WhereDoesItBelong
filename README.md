@@ -7,17 +7,20 @@
     ```shell
     docker build -t flask3.12 .
     ```
-4. Now run the container while with:
+4. Running the app: run the container while with:
     ```shell
-    docker run -it -p 8000:8000 -e OPENAI_SECRET_KEY=$OPENAI_SECRET_KEY flask3.12
+    docker run -it -p 8000:8000 -e OPENAI_SECRET_KEY=$OPENAI_SECRET_KEY flask3.12 app.py
     ```
-5. You should see:
+    You should see:
     ```
     * Serving Flask app 'app'
     * Debug mode: off
     ```
 6. Run `python evaluate.py` in another terminal.
-
+7. Running the tests:
+    ```
+    docker run -it -p 8000:8000 -e OPENAI_SECRET_KEY=$OPENAI_SECRET_KEY flask3.12 -m pytest .
+    ```
 
 # High-Level Design Overview
 ### Packages
