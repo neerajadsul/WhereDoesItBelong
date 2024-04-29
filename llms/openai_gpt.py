@@ -11,10 +11,14 @@ from .datastores import LogFiles
 
 
 class OpenAIAssistant(ChatAssistant):
-    def __init__(self, model, prompt_crafter, datastore):
+    def __init__(self, model, prompt_crafter, datastore, response_format='text'):
         self.model = model
         self.datastore = datastore
         self.prompt_crafter = prompt_crafter
+        if response_format == 'json':
+            self.response_format = { "type": "json_object" }
+        else:
+            self.response_format = { "type": "text" }
 
         if os.getenv('OPENAI_SECRET_KEY') is None:
             raise EnvironmentError('API Key not set.')
@@ -27,7 +31,7 @@ class OpenAIAssistant(ChatAssistant):
             model=self.model,
             messages=messages,
             temperature=0,
-            response_format={"type": "json_object"}
+            response_format=self.response_format
         )
         return response
 
