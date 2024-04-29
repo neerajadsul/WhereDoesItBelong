@@ -12,7 +12,7 @@ def test_question_answer_prompt_crafter():
     crafter = QuestionAnswerPromptCrafter(TEST_PATH / 'assets/prompt_templates/prompt_bigger_item.txt')
     prompt = crafter.craft_prompt(data)
     print(prompt)
-    assert len(prompt.splitlines()) == 6
+    assert len(prompt.splitlines()) == 8
 
 
 def test_classify_prompt_crafter():

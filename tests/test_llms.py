@@ -1,4 +1,6 @@
 from pathlib import Path
+import json
+
 import pytest
 
 from llms.prompts import QuestionAnswerPromptCrafter
@@ -22,11 +24,12 @@ def assistant():
 
 
 def test_openai_gpt(assistant):
-    data = {
-        'justify': ' and a justfy in a single sentence with minimum words possible but no more than 15.',
-        'thing1': 'Mercury',
-        'thing2': 'Mars'
-    }
+    data = """{
+        "justify": " and a justify in a single sentence with minimum words possible but no more than 15.",
+        "thing1": "Mercury",
+        "thing2": "Mars"
+    }"""
     result = assistant.get_completion(data)
     message = assistant.get_message(result)
-    print(message)
+    f_message = json.loads(message)
+    assert f_message['answer'] == 'Mercury'

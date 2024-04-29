@@ -15,7 +15,7 @@ class PromptCrafter(ABC):
 
         with open(prompt_template_file, 'rt') as fp:
             self._raw_prompt = fp.read()
-        
+
         self.template = Template(self._raw_prompt)
 
     @abstractmethod
@@ -26,10 +26,10 @@ class PromptCrafter(ABC):
 class QuestionAnswerPromptCrafter(PromptCrafter):
     def __init__(self, prompt_template_file):
         super().__init__(prompt_template_file)
-    def craft_prompt(self, data):
-        data = json.loads(data)
-        justify = " and a justfy in a single sentence with minimum words possible but no more than 15."
-        prompt = self._raw_prompt.format(
+    def craft_prompt(self, sdata):
+        data = json.loads(sdata)
+        justify = " and a justify in a single sentence with minimum words possible but no more than 15."
+        prompt = self.template.render(
             justify=justify if data['justify'] else '',
             thing1=data['thing1'],
             thing2=data['thing2']

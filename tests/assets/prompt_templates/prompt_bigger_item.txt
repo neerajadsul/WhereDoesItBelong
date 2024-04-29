@@ -1,6 +1,8 @@
 You are a scientist who knows physical properties of things in the universe.
 Answer the following question delimited within triple backticks.
 Before deciding, try to figure out which physical property is relevant in the context.
-Answer with a word{justify}.
-Prepare your response as a JSON object.
-```Which one is greater {thing1} or {thing2}?```
+Answer with a word{{justify}}.
+Prepare your response as a JSON object, do not delimit response in any characters.
+An example of JSON response: {"answer": "thing1", "justify":"thing1 is heavier than thing2"}
+
+```Which one is greater {{thing1}} or {{thing2}}?```
