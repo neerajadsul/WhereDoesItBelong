@@ -52,7 +52,7 @@ class ClassifyPromptCrafter(PromptCrafter):
 
         multilabel = 'or more ' if data['options']['multilabel'] else ''
         if data['options'].get('show_reasoning', True):
-            show_reasoning = ' with reasoning for the decision in a maximum 15 word long sentence.'
+            show_reasoning = 'Provide reasoning for the decision in a maximum 15 word long sentence.'
         else:
             show_reasoning = ''
 
