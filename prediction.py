@@ -57,7 +57,7 @@ class Prediction:
         reasoning = reasoning_regex.findall(message)
         result = { 'result': result, 'reasoning': reasoning}
         return result
-        
+
     def format_result_from_json(self, message):
         try:
             f_message = json.loads(message)
@@ -69,9 +69,11 @@ class Prediction:
             if len(f_message) == 0:
                 return {'result': []}
 
-            for name in ['ids', 'categories', 'classes']:
-                if name in f_message:
-                    f_message['result'] = f_message.get(name, [])
-                    break
+            if 'result' not in f_message:
+                f_message['result'] = []
+                for name in ['ids', 'categories', 'classes']:
+                    if name in f_message:
+                        f_message['result'] = f_message.get(name, [])
+                        break
 
         return f_message
