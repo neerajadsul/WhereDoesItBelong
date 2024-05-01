@@ -1,4 +1,4 @@
-# 5D Take Home Technical Test
+# Text Classification with LLMs
 
 ## How to run with docker?
 1. Clone the repository and go to the root of it.
