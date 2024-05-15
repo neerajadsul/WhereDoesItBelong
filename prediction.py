@@ -10,7 +10,7 @@ import openai
 from llms.openai_gpt import OpenAIAssistant
 from llms.prompts import ClassifyPromptCrafter
 from llms.datastores import LogFiles
-
+from functools import cache
 
 RESPONSE_DATA_PATH = Path(os.getenv('HOME')) / '.gptlog' / 'responses'
 PROMPT_TEMPLATES_PATH = Path(__file__).resolve().parent / 'prompt_templates'
@@ -37,6 +37,7 @@ class Prediction:
             response_format='json'
         )
 
+    @cache
     def predict(self, data):
         #TODO: Add caching, async call perhaps
         try:
