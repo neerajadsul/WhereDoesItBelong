@@ -136,29 +136,12 @@ Included in the repo alongside this README is the script we will run to evaluate
 
 Feel free to include anything else in the deliverable that could help us approach it as a newbie, much like how you’d do it in a usual work setting.
 
-## Submission
+## Planned Features
 
-Please submit your code as a zip file or a link to a private repository. If you choose to submit a zip file, please ensure that it is named `5D_Take_Home_Technical_Test.zip`.
-
-
-
-## What We Like To See
-
-- Clean, well-structured code
-- Tests! We love tests
-- Your own flair - if you want to add extra features or functionality, feel free to do so, and see the stretch goals for inspiration
-
-## Stretch Goals
-
-If you have time or would like to, here are some stretch goals you could consider:
-
-- Dockerize your app
-- Deploy it somewhere and send us the link
+- Deploy it somewhere
 - Add security measures of some kind
-- Write a simple client library which can extract text from PDFs and send it to your app
-- Add a function to the client library which opens URLs, scrapes the text from them, and sends it to your app
-- Add extra optional metadata such as `temperature` and `model_name`
-- Other common sense API goodies
+- Extract text from PDFs and process
+- Opens given URL, scrapes the text from it and summarize
 - Other endpoints to accomplish different tasks with LLMs
 - Add caching
 - Make a simple frontend
